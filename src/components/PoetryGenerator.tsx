@@ -9,17 +9,20 @@ import { Loader2, Sparkles, Feather } from 'lucide-react';
 export default function PoetryGenerator() {
   const [poem, setPoem] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleGenerate = async () => {
     setLoading(true);
+    setError(null);
     try {
       const result = await generateWelcomePoem({
         mohammedName: 'Mohammed',
         dinaName: 'Dina'
       });
       setPoem(result.poem);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Poem generation failed:', error);
+      setError('يرجى التأكد من إعداد مفتاح API الخاص بـ Gemini في إعدادات البيئة.');
     } finally {
       setLoading(false);
     }
@@ -37,7 +40,7 @@ export default function PoetryGenerator() {
           </p>
         </div>
 
-        <div className="flex justify-center mb-12">
+        <div className="flex flex-col items-center mb-12">
           <Button 
             onClick={handleGenerate} 
             disabled={loading}
@@ -51,6 +54,7 @@ export default function PoetryGenerator() {
             )}
             {poem ? 'Generate Another Blessing' : 'Reveal Our Blessing'}
           </Button>
+          {error && <p className="mt-4 text-destructive font-body text-sm">{error}</p>}
         </div>
 
         {poem && (
