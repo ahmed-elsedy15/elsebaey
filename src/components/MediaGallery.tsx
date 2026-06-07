@@ -4,19 +4,36 @@ import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Play } from 'lucide-react';
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { useEffect, useRef } from 'react';
 
 export default function MediaGallery() {
   const images = PlaceHolderImages.filter(img => img.id.startsWith('gallery-'));
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const elements = sectionRef.current?.querySelectorAll('.reveal');
+    elements?.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className="py-24 bg-background">
+    <section ref={sectionRef} className="py-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 opacity-0 animate-fade-in-up">
+        <div className="text-center mb-16 reveal">
           <h2 className="font-headline text-4xl md:text-5xl mb-4">Cherished Moments</h2>
           <p className="font-body text-muted-foreground text-lg">A glimpse into our beautiful journey together.</p>
         </div>
 
-        <div className="max-w-4xl mx-auto mb-16 opacity-0 animate-fade-in-up animate-delay-200">
+        <div className="max-w-4xl mx-auto mb-16 reveal animate-delay-200">
           <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl group cursor-pointer">
             <Image 
               src="https://picsum.photos/seed/love-video/1200/675" 
@@ -41,8 +58,8 @@ export default function MediaGallery() {
             <Dialog key={index}>
               <DialogTrigger asChild>
                 <div 
-                  className="group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-lg cursor-pointer opacity-0 animate-fade-in-up" 
-                  style={{ animationDelay: `${(index + 3) * 150}ms` }}
+                  className="group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-lg cursor-pointer reveal" 
+                  style={{ transitionDelay: `${index * 100}ms` }}
                 >
                   <Image 
                     src={image.imageUrl} 
@@ -58,8 +75,8 @@ export default function MediaGallery() {
               </DialogTrigger>
               <DialogContent className="max-w-4xl p-6 bg-card border-none">
                 <DialogTitle className="font-headline text-2xl mb-2">{image.description}</DialogTitle>
-                <DialogDescription className="font-body text-muted-foreground mb-4">
-                  A beautiful captured moment from Mohammed and Dina's journey.
+                <DialogDescription className="font-body text-muted-foreground mb-4 text-xs">
+                  Captured moment: {image.description}
                 </DialogDescription>
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl">
                   <Image src={image.imageUrl} alt={image.description} fill className="object-contain" />

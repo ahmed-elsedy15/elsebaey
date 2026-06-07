@@ -63,6 +63,17 @@
   animation: pulse-soft 3s ease-in-out infinite;
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .animate-delay-200 { animation-delay: 200ms; }
 .animate-delay-400 { animation-delay: 400ms; }
 .animate-delay-600 { animation-delay: 600ms; }

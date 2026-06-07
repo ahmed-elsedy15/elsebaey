@@ -26,7 +26,7 @@ export default function Hero() {
           Save The Date
         </span>
 
-        {/* Names and Heart Stacked Vertically with Adjusted Spacing */}
+        {/* Names and Heart Stacked Vertically */}
         <div className="flex flex-col items-center space-y-4 md:space-y-6">
           <h1 className="font-headline text-5xl sm:text-7xl md:text-8xl opacity-0 animate-fade-in-up animate-delay-200 leading-none">
             Mohammed
@@ -41,7 +41,7 @@ export default function Hero() {
           </h1>
         </div>
 
-        {/* Date, Day and Hall Information with Controlled Spacing */}
+        {/* Date, Day and Hall Information */}
         <div className="flex flex-col items-center mt-10 md:mt-12 opacity-0 animate-fade-in-up animate-delay-800">
           <div className="w-16 h-px bg-white/40 mb-6" />
           
