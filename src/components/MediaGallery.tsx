@@ -29,11 +29,11 @@ export default function MediaGallery() {
     <section ref={sectionRef} className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 reveal">
-          <h2 className="font-headline text-4xl md:text-5xl mb-4">Cherished Moments</h2>
-          <p className="font-body text-muted-foreground text-lg">A glimpse into our beautiful journey together.</p>
+          <h2 className="font-headline text-4xl md:text-5xl mb-4">لحظات لا تُنسى</h2>
+          <p className="font-body text-muted-foreground text-lg">لمحات من رحلتنا الجميلة معاً.</p>
         </div>
 
-        <div className="max-w-4xl mx-auto mb-16 reveal animate-delay-200">
+        <div className="max-w-4xl mx-auto mb-16 reveal">
           <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl group cursor-pointer">
             <Image 
               src="https://picsum.photos/seed/love-video/1200/675" 
@@ -47,8 +47,8 @@ export default function MediaGallery() {
               </div>
             </div>
             <div className="absolute bottom-8 left-8 text-white">
-              <h3 className="font-headline text-2xl mb-1">Our Love Story</h3>
-              <p className="font-body opacity-80 uppercase tracking-widest text-sm">Cinematic Film</p>
+              <h3 className="font-headline text-2xl mb-1">قصة حبنا</h3>
+              <p className="font-body opacity-80 uppercase tracking-widest text-sm">فيلم سينمائي</p>
             </div>
           </div>
         </div>
@@ -58,8 +58,7 @@ export default function MediaGallery() {
             <Dialog key={index}>
               <DialogTrigger asChild>
                 <div 
-                  className="group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-lg cursor-pointer reveal" 
-                  style={{ transitionDelay: `${index * 100}ms` }}
+                  className="group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-lg cursor-pointer reveal"
                 >
                   <Image 
                     src={image.imageUrl} 
@@ -69,14 +68,14 @@ export default function MediaGallery() {
                     data-ai-hint={image.imageHint}
                   />
                   <div className="absolute inset-0 bg-primary/20 opacity-0 transition-opacity group-hover:opacity-100 flex items-center justify-center">
-                    <span className="text-white font-body border border-white px-4 py-2 rounded-full text-sm">View Larger</span>
+                    <span className="text-white font-body border border-white px-4 py-2 rounded-full text-sm">عرض الصورة</span>
                   </div>
                 </div>
               </DialogTrigger>
               <DialogContent className="max-w-4xl p-6 bg-card border-none">
                 <DialogTitle className="font-headline text-2xl mb-2">{image.description}</DialogTitle>
-                <DialogDescription className="font-body text-muted-foreground mb-4 text-xs">
-                  Captured moment: {image.description}
+                <DialogDescription className="font-body text-muted-foreground mb-4">
+                  لحظة من ذكرياتنا الجميلة.
                 </DialogDescription>
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl">
                   <Image src={image.imageUrl} alt={image.description} fill className="object-contain" />

@@ -1,5 +1,5 @@
 import Hero from '@/components/Hero';
-import PoetryGenerator from '@/components/PoetryGenerator';
+import WelcomeSection from '@/components/WelcomeSection';
 import AboutTimeline from '@/components/AboutTimeline';
 import MediaGallery from '@/components/MediaGallery';
 import EventDetails from '@/components/EventDetails';
@@ -11,8 +11,8 @@ export default function Home() {
       {/* 1. Cinematic Hero Section */}
       <Hero />
 
-      {/* 2. GenAI Feature: Bespoke Poetry Blessing */}
-      <PoetryGenerator />
+      {/* 2. Welcome Message and Navigation */}
+      <WelcomeSection />
 
       {/* 3. Narrative Story: About the Couple */}
       <AboutTimeline />
