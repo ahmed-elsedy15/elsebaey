@@ -2,8 +2,26 @@
 
 import { Sparkles, ArrowDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useEffect, useRef } from 'react';
 
 export default function WelcomeSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const elements = sectionRef.current?.querySelectorAll('.reveal');
+    elements?.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   const scrollToDetails = () => {
     const element = document.getElementById('event-details');
     if (element) {
@@ -12,7 +30,7 @@ export default function WelcomeSection() {
   };
 
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
+    <section ref={sectionRef} className="py-24 bg-background relative overflow-hidden">
       <div className="container mx-auto px-4 max-w-4xl text-center relative z-10">
         <div className="mb-12 reveal">
           <Sparkles className="mx-auto w-10 h-10 text-primary mb-6 animate-pulse" />
@@ -26,7 +44,7 @@ export default function WelcomeSection() {
             size="lg"
             className="bg-primary hover:bg-primary/90 text-white px-10 py-7 text-xl rounded-full shadow-2xl transition-all hover:scale-105 group"
           >
-            تفاصيل الحفل
+            تفاصيل الحفل | Join Us
             <ArrowDown className="ml-2 h-6 w-6 group-hover:translate-y-1 transition-transform" />
           </Button>
         </div>

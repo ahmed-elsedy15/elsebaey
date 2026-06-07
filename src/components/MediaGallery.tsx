@@ -29,7 +29,7 @@ export default function MediaGallery() {
     <section ref={sectionRef} className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 reveal">
-          <h2 className="font-headline text-4xl md:text-5xl mb-4">لحظات لا تُنسى</h2>
+          <h2 className="font-headline text-4xl md:text-5xl mb-4 text-primary">لحظات لا تُنسى</h2>
           <p className="font-body text-muted-foreground text-lg">لمحات من رحلتنا الجميلة معاً.</p>
         </div>
 

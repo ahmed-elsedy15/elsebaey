@@ -17,7 +17,7 @@ export default function Home() {
       {/* 3. Narrative Story: About the Couple */}
       <AboutTimeline />
 
-      {/* 4. Interactive Media Storeyboard */}
+      {/* 4. Interactive Media Gallery */}
       <MediaGallery />
 
       {/* 5. Event Detail Dashboard */}
