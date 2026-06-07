@@ -15,6 +15,10 @@ export default function EventDetails() {
     if (iframe) {
       const handleLoad = () => setMapLoaded(true);
       iframe.addEventListener('load', handleLoad);
+      // If it's already loaded
+      if (iframe.contentDocument?.readyState === 'complete') {
+        handleLoad();
+      }
       return () => iframe.removeEventListener('load', handleLoad);
     }
   }, []);
@@ -34,8 +38,8 @@ export default function EventDetails() {
                 <MapPin className="text-primary w-8 h-8" />
               </div>
               <h3 className="font-headline text-2xl mb-4">The Ceremony</h3>
-              <p className="font-body text-muted-foreground mb-2">Lorev Hall</p>
-              <p className="font-body text-muted-foreground mb-6">Grand Oasis Plaza, Dubai</p>
+              <p className="font-body text-muted-foreground mb-2">قاعة لوريف - Lorev Hall</p>
+              <p className="font-body text-muted-foreground mb-6">جمصة، محافظة الدقهلية</p>
               <div className="h-px bg-border w-12 mx-auto mb-6" />
               <div className="flex items-center justify-center text-primary font-semibold">
                 <Clock className="w-4 h-4 mr-2" />
@@ -64,7 +68,7 @@ export default function EventDetails() {
                 <Info className="text-accent w-8 h-8" />
               </div>
               <h3 className="font-headline text-2xl mb-4">The Celebration</h3>
-              <p className="font-body text-muted-foreground mb-2">Lorev Garden Pavilion</p>
+              <p className="font-body text-muted-foreground mb-2">Lorev Pavilion</p>
               <p className="font-body text-muted-foreground mb-6">Dinner & Dancing to follow</p>
               <div className="h-px bg-border w-12 mx-auto mb-6" />
               <div className="flex items-center justify-center text-accent font-semibold">
@@ -80,13 +84,13 @@ export default function EventDetails() {
             <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center z-10">
               <div className="text-center">
                 <MapPin className="w-12 h-12 text-primary/30 mx-auto mb-2" />
-                <p className="font-body text-muted-foreground italic">Interactive Map Coming Soon</p>
+                <p className="font-body text-muted-foreground italic">Loading Interactive Map...</p>
               </div>
             </div>
           )}
           <iframe 
             ref={iframeRef}
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.6547671043236!2d55.274393676159655!3d25.19720183188554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f4334adcc628d%3A0xb363842b1093121!2sBurj%20Khalifa!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13636.57448885145!2d31.50337!3d31.44214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f77c0883b1a8f9%3A0xf62a265636058e5!2zR2FtYXNhLCDEkWFrYWhsaXlhIEdvdmVybm9yYXRl!5e0!3m2!1sen!2seg!4v1710000000000!5m2!1sen!2seg" 
             width="100%" 
             height="100%" 
             style={{ border: 0 }} 
