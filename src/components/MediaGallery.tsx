@@ -8,7 +8,6 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } 
 
 export default function MediaGallery() {
   const images = PlaceHolderImages.filter(img => img.id.startsWith('gallery-'));
-  const [selectedVideo, setSelectedVideo] = useState(false);
 
   return (
     <section className="py-24 bg-background">
@@ -57,12 +56,12 @@ export default function MediaGallery() {
                   </div>
                 </div>
               </DialogTrigger>
-              <DialogContent className="max-w-4xl p-0 bg-transparent border-none">
-                <DialogTitle className="sr-only">{image.description}</DialogTitle>
-                <DialogDescription className="sr-only">
-                  Full size view of {image.description}
+              <DialogContent className="max-w-4xl p-6 bg-card border-none">
+                <DialogTitle className="font-headline text-2xl mb-2">{image.description}</DialogTitle>
+                <DialogDescription className="font-body text-muted-foreground mb-4">
+                  A beautiful captured moment from Mohammed and Dina's journey.
                 </DialogDescription>
-                <div className="relative aspect-[4/5] w-full">
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl">
                   <Image src={image.imageUrl} alt={image.description} fill className="object-contain" />
                 </div>
               </DialogContent>
