@@ -10,12 +10,10 @@ export default function EventDetails() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
-    // Avoid onLoad prop issue in NextJS 15 by using ref
     const iframe = iframeRef.current;
     if (iframe) {
       const handleLoad = () => setMapLoaded(true);
       iframe.addEventListener('load', handleLoad);
-      // If it's already loaded
       if (iframe.contentDocument?.readyState === 'complete') {
         handleLoad();
       }
