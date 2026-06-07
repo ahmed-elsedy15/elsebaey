@@ -2,16 +2,21 @@
 
 import { MapPin, Clock, Calendar as CalendarIcon, Info } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 
 export default function EventDetails() {
   const [mapLoaded, setMapLoaded] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
-    // We simulate a delay or use a real listener via a ref for better safety in NextJS
-    const timer = setTimeout(() => setMapLoaded(true), 1500);
-    return () => clearTimeout(timer);
+    // Avoid onLoad prop issue in NextJS 15 by using ref
+    const iframe = iframeRef.current;
+    if (iframe) {
+      const handleLoad = () => setMapLoaded(true);
+      iframe.addEventListener('load', handleLoad);
+      return () => iframe.removeEventListener('load', handleLoad);
+    }
   }, []);
 
   return (
@@ -80,6 +85,7 @@ export default function EventDetails() {
             </div>
           )}
           <iframe 
+            ref={iframeRef}
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.6547671043236!2d55.274393676159655!3d25.19720183188554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f4334adcc628d%3A0xb363842b1093121!2sBurj%20Khalifa!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae" 
             width="100%" 
             height="100%" 

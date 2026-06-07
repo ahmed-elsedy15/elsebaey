@@ -22,43 +22,43 @@ export default function Hero() {
 
       <div className="relative z-10 text-center text-white px-4 w-full flex flex-col items-center">
         {/* Entrance Animations */}
-        <span className="block font-body text-sm uppercase tracking-[0.5em] mb-8 opacity-0 animate-fade-in-up">
+        <span className="block font-body text-sm uppercase tracking-[0.5em] mb-12 opacity-0 animate-fade-in-up">
           Save The Date
         </span>
 
-        {/* Names and Heart Stacked Vertically */}
-        <div className="flex flex-col items-center gap-y-6 md:gap-y-8">
-          <h1 className="font-headline text-5xl sm:text-7xl md:text-8xl lg:text-9xl opacity-0 animate-fade-in-up animate-delay-200">
+        {/* Names and Heart Stacked Vertically with Adjusted Spacing */}
+        <div className="flex flex-col items-center space-y-8 md:space-y-12">
+          <h1 className="font-headline text-5xl sm:text-7xl md:text-8xl lg:text-9xl opacity-0 animate-fade-in-up animate-delay-200 leading-tight">
             Mohammed
           </h1>
           
-          <div className="opacity-0 animate-fade-in-up animate-delay-400">
-             <Heart className="text-accent w-14 h-14 md:w-20 md:h-20 fill-accent animate-pulse-soft drop-shadow-[0_0_25px_rgba(255,100,100,0.8)]" />
+          <div className="opacity-0 animate-fade-in-up animate-delay-400 py-4">
+             <Heart className="text-accent w-16 h-16 md:w-24 md:h-24 fill-accent animate-pulse-soft drop-shadow-[0_0_30px_rgba(255,100,100,0.8)]" />
           </div>
 
-          <h1 className="font-headline text-5xl sm:text-7xl md:text-8xl lg:text-9xl opacity-0 animate-fade-in-up animate-delay-600">
+          <h1 className="font-headline text-5xl sm:text-7xl md:text-8xl lg:text-9xl opacity-0 animate-fade-in-up animate-delay-600 leading-tight">
             Dina
           </h1>
         </div>
 
-        {/* Date, Day and Hall Information */}
-        <div className="flex flex-col items-center mt-12 opacity-0 animate-fade-in-up animate-delay-800">
-          <div className="w-24 h-px bg-white/40 mb-8" />
+        {/* Date, Day and Hall Information with Increased Top Margin */}
+        <div className="flex flex-col items-center mt-16 md:mt-24 opacity-0 animate-fade-in-up animate-delay-800">
+          <div className="w-24 h-px bg-white/40 mb-10" />
           
-          <p className="font-headline text-3xl md:text-5xl tracking-widest italic mb-4">
+          <p className="font-headline text-3xl md:text-5xl tracking-widest italic mb-6">
             23 . 07 . 2026
           </p>
           
-          <div className="flex flex-col items-center space-y-4">
+          <div className="flex flex-col items-center space-y-6">
             <p className="font-body text-xl md:text-2xl uppercase tracking-[0.3em] opacity-90">
               Thursday | الخميس
             </p>
-            <div className="bg-white/10 backdrop-blur-md px-10 py-4 rounded-full border border-white/20 shadow-2xl transition-all hover:bg-white/20">
+            <div className="bg-white/10 backdrop-blur-md px-12 py-5 rounded-full border border-white/20 shadow-2xl transition-all hover:bg-white/20">
                <p className="font-headline text-xl md:text-2xl tracking-wide">Lorev Hall | قاعة لوريف</p>
             </div>
           </div>
 
-          <div className="w-24 h-px bg-white/40 mt-8" />
+          <div className="w-24 h-px bg-white/40 mt-10" />
         </div>
       </div>
     </section>
