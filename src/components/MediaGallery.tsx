@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Play } from 'lucide-react';
 import { useState } from 'react';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 export default function MediaGallery() {
   const images = PlaceHolderImages.filter(img => img.id.startsWith('gallery-'));
@@ -58,6 +58,10 @@ export default function MediaGallery() {
                 </div>
               </DialogTrigger>
               <DialogContent className="max-w-4xl p-0 bg-transparent border-none">
+                <DialogTitle className="sr-only">{image.description}</DialogTitle>
+                <DialogDescription className="sr-only">
+                  Full size view of {image.description}
+                </DialogDescription>
                 <div className="relative aspect-[4/5] w-full">
                   <Image src={image.imageUrl} alt={image.description} fill className="object-contain" />
                 </div>

@@ -2,8 +2,12 @@
 
 import { MapPin, Clock, Calendar as CalendarIcon, Info } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { useState } from 'react';
+import { cn } from '@/lib/utils';
 
 export default function EventDetails() {
+  const [mapLoaded, setMapLoaded] = useState(false);
+
   return (
     <section className="py-24 bg-secondary/30 relative">
       <div className="container mx-auto px-4">
@@ -65,12 +69,14 @@ export default function EventDetails() {
 
         {/* Placeholder for Map */}
         <div className="mt-16 max-w-6xl mx-auto overflow-hidden rounded-3xl shadow-xl h-96 relative">
-          <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
-             <div className="text-center">
+          {!mapLoaded && (
+            <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
+              <div className="text-center">
                 <MapPin className="w-12 h-12 text-primary/30 mx-auto mb-2" />
                 <p className="font-body text-muted-foreground italic">Interactive Map Coming Soon</p>
-             </div>
-          </div>
+              </div>
+            </div>
+          )}
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.6547671043236!2d55.274393676159655!3d25.19720183188554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f4334adcc628d%3A0xb363842b1093121!2sBurj%20Khalifa!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae" 
             width="100%" 
@@ -79,8 +85,11 @@ export default function EventDetails() {
             allowFullScreen 
             loading="lazy" 
             referrerPolicy="no-referrer-when-downgrade"
-            className="opacity-0 transition-opacity duration-1000"
-            onLoad={(e) => (e.currentTarget.style.opacity = '1')}
+            className={cn(
+              "transition-opacity duration-1000",
+              mapLoaded ? "opacity-100" : "opacity-0"
+            )}
+            onLoad={() => setMapLoaded(true)}
           ></iframe>
         </div>
       </div>
