@@ -14,6 +14,7 @@ export default function EventDetails() {
     if (iframe) {
       const handleLoad = () => setMapLoaded(true);
       
+      // Check if already loaded
       if (iframe.contentDocument?.readyState === 'complete') {
         setMapLoaded(true);
       } else {
@@ -38,8 +39,8 @@ export default function EventDetails() {
                 <MapPin className="text-primary w-8 h-8" />
               </div>
               <h3 className="font-headline text-2xl mb-4">The Ceremony</h3>
-              <p className="font-body text-muted-foreground mb-2">Grand Ballroom, Oasis Plaza</p>
-              <p className="font-body text-muted-foreground mb-6">Sheikh Zayed Road, Dubai</p>
+              <p className="font-body text-muted-foreground mb-2">Lorev Hall</p>
+              <p className="font-body text-muted-foreground mb-6">Grand Oasis Plaza, Dubai</p>
               <div className="h-px bg-border w-12 mx-auto mb-6" />
               <div className="flex items-center justify-center text-primary font-semibold">
                 <Clock className="w-4 h-4 mr-2" />
@@ -68,7 +69,7 @@ export default function EventDetails() {
                 <Info className="text-accent w-8 h-8" />
               </div>
               <h3 className="font-headline text-2xl mb-4">The Celebration</h3>
-              <p className="font-body text-muted-foreground mb-2">Garden Pavilion</p>
+              <p className="font-body text-muted-foreground mb-2">Lorev Garden Pavilion</p>
               <p className="font-body text-muted-foreground mb-6">Dinner & Dancing to follow</p>
               <div className="h-px bg-border w-12 mx-auto mb-6" />
               <div className="flex items-center justify-center text-accent font-semibold">

@@ -32,9 +32,15 @@ export default function Hero() {
         </h1>
         <div className="flex flex-col items-center opacity-0 animate-fade-in-up animate-delay-400">
           <div className="w-24 h-px bg-white/60 mb-6" />
-          <p className="font-headline text-3xl md:text-4xl tracking-widest italic">
+          <p className="font-headline text-3xl md:text-4xl tracking-widest italic mb-2">
             23 . 07 . 2026
           </p>
+          <p className="font-body text-xl md:text-2xl uppercase tracking-[0.3em] mb-4 opacity-80">
+            Thursday | الخميس
+          </p>
+          <div className="bg-white/10 backdrop-blur-md px-8 py-3 rounded-full border border-white/20 shadow-2xl">
+             <p className="font-headline text-xl md:text-2xl tracking-wide">Lorev Hall | قاعة لوريف</p>
+          </div>
           <div className="w-24 h-px bg-white/60 mt-6" />
         </div>
       </div>
