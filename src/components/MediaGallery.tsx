@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Play } from 'lucide-react';
-import { useState } from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 export default function MediaGallery() {
@@ -17,7 +16,6 @@ export default function MediaGallery() {
           <p className="font-body text-muted-foreground text-lg">A glimpse into our beautiful journey together.</p>
         </div>
 
-        {/* Video Feature */}
         <div className="max-w-4xl mx-auto mb-16">
           <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl group cursor-pointer">
             <Image 
@@ -38,7 +36,6 @@ export default function MediaGallery() {
           </div>
         </div>
 
-        {/* Grid Gallery */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {images.map((image, index) => (
             <Dialog key={index}>

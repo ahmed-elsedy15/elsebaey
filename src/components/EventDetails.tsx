@@ -13,8 +13,13 @@ export default function EventDetails() {
     const iframe = iframeRef.current;
     if (iframe) {
       const handleLoad = () => setMapLoaded(true);
-      iframe.addEventListener('load', handleLoad);
-      return () => iframe.removeEventListener('load', handleLoad);
+      
+      if (iframe.contentDocument?.readyState === 'complete') {
+        setMapLoaded(true);
+      } else {
+        iframe.addEventListener('load', handleLoad);
+        return () => iframe.removeEventListener('load', handleLoad);
+      }
     }
   }, []);
 
@@ -27,7 +32,6 @@ export default function EventDetails() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {/* Ceremony */}
           <Card className="border-none shadow-xl bg-card/80 backdrop-blur transition-transform hover:-translate-y-2">
             <CardContent className="p-8 text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -44,7 +48,6 @@ export default function EventDetails() {
             </CardContent>
           </Card>
 
-          {/* Date */}
           <Card className="border-none shadow-2xl bg-primary text-primary-foreground transition-transform hover:-translate-y-2">
             <CardContent className="p-8 text-center flex flex-col justify-center h-full">
               <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -59,7 +62,6 @@ export default function EventDetails() {
             </CardContent>
           </Card>
 
-          {/* Reception */}
           <Card className="border-none shadow-xl bg-card/80 backdrop-blur transition-transform hover:-translate-y-2">
             <CardContent className="p-8 text-center">
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -77,7 +79,6 @@ export default function EventDetails() {
           </Card>
         </div>
 
-        {/* Placeholder for Map */}
         <div className="mt-16 max-w-6xl mx-auto overflow-hidden rounded-3xl shadow-xl h-96 relative">
           {!mapLoaded && (
             <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
