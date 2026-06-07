@@ -8,10 +8,9 @@ import { cn } from '@/lib/utils';
 export default function EventDetails() {
   const [mapLoaded, setMapLoaded] = useState(false);
 
-  // Handle map loading safely without direct event handlers on the component if possible,
-  // or use a local state and useEffect for refined control.
   useEffect(() => {
-    const timer = setTimeout(() => setMapLoaded(true), 2000); // Simulate load for smooth transition
+    // We simulate a delay or use a real listener via a ref for better safety in NextJS
+    const timer = setTimeout(() => setMapLoaded(true), 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -46,7 +45,7 @@ export default function EventDetails() {
                 <CalendarIcon className="text-white w-8 h-8" />
               </div>
               <h3 className="font-headline text-3xl mb-4">Thursday</h3>
-              <p className="font-headline text-6xl mb-4 animate-pulse">23</p>
+              <p className="font-headline text-6xl mb-4">23</p>
               <p className="font-body uppercase tracking-[0.3em] text-sm mb-6">July 2026</p>
               <div className="bg-white/10 py-3 px-6 rounded-full inline-block mx-auto">
                 <span className="font-body">Formal Attire Requested</span>

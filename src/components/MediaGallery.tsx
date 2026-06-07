@@ -40,7 +40,10 @@ export default function MediaGallery() {
           {images.map((image, index) => (
             <Dialog key={index}>
               <DialogTrigger asChild>
-                <div className="group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-lg cursor-pointer opacity-0 animate-fade-in-up" style={{ animationDelay: `${(index + 2) * 200}ms` }}>
+                <div 
+                  className="group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-lg cursor-pointer opacity-0 animate-fade-in-up" 
+                  style={{ animationDelay: `${(index + 3) * 150}ms` }}
+                >
                   <Image 
                     src={image.imageUrl} 
                     alt={image.description} 
