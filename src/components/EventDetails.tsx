@@ -42,7 +42,7 @@ export default function EventDetails() {
               <p className="font-body text-muted-foreground mb-6">جمصة، محافظة الدقهلية</p>
               <div className="h-px bg-border w-12 mx-auto mb-6" />
               <div className="flex items-center justify-center text-primary font-semibold">
-                <Clock className="w-4 h-4 mr-2" />
+                <Clock className="text-primary w-4 h-4 mr-2" />
                 <span>6:00 PM Sharp</span>
               </div>
             </CardContent>
@@ -90,7 +90,7 @@ export default function EventDetails() {
           )}
           <iframe 
             ref={iframeRef}
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13636.57448885145!2d31.50337!3d31.44214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f77c0883b1a8f9%3A0xf62a265636058e5!2zR2FtYXNhLCDEkWFrYWhsaXlhIEdvdmVybm9yYXRl!5e0!3m2!1sen!2seg!4v1710000000000!5m2!1sen!2seg" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3408.847589578278!2d31.54522222442461!3d31.443234174360693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f759003d7387fb%3A0x8a862886e0035c4c!2zTG9yZXYgSGFsbCAtINmC2KfYudipINmE2YjYsdmK2YE!5e0!3m2!1sen!2seg!4v1717250000000!5m2!1sen!2seg" 
             width="100%" 
             height="100%" 
             style={{ border: 0 }} 
