@@ -11,12 +11,12 @@ export default function MediaGallery() {
   return (
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 opacity-0 animate-fade-in-up">
           <h2 className="font-headline text-4xl md:text-5xl mb-4">Cherished Moments</h2>
           <p className="font-body text-muted-foreground text-lg">A glimpse into our beautiful journey together.</p>
         </div>
 
-        <div className="max-w-4xl mx-auto mb-16">
+        <div className="max-w-4xl mx-auto mb-16 opacity-0 animate-fade-in-up animate-delay-200">
           <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl group cursor-pointer">
             <Image 
               src="https://picsum.photos/seed/love-video/1200/675" 
@@ -40,7 +40,7 @@ export default function MediaGallery() {
           {images.map((image, index) => (
             <Dialog key={index}>
               <DialogTrigger asChild>
-                <div className="group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-lg cursor-pointer">
+                <div className="group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-lg cursor-pointer opacity-0 animate-fade-in-up" style={{ animationDelay: `${(index + 2) * 200}ms` }}>
                   <Image 
                     src={image.imageUrl} 
                     alt={image.description} 
