@@ -44,10 +44,6 @@ export default function Hero() {
           <div className="w-24 h-px bg-white/60 mt-6" />
         </div>
       </div>
-
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-60">
-        <div className="w-px h-12 bg-white" />
-      </div>
     </section>
   );
 }
