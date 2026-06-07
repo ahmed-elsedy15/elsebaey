@@ -23,7 +23,7 @@ export default function Hero() {
         <span className="block font-body text-sm uppercase tracking-[0.5em] mb-4 opacity-0 animate-fade-in-up">
           Save The Date
         </span>
-        <h1 className="font-headline text-5xl sm:text-6xl md:text-8xl lg:text-9xl mb-8 opacity-0 animate-fade-in-up animate-delay-200 flex flex-col md:flex-row items-center justify-center gap-y-6 md:gap-x-12">
+        <h1 className="font-headline text-5xl sm:text-6xl md:text-8xl lg:text-9xl mb-8 opacity-0 animate-fade-in-up animate-delay-200 flex flex-col items-center justify-center gap-y-6">
           <span>Mohammed</span>
           <div className="flex items-center justify-center">
              <Heart className="text-accent w-14 h-14 md:w-20 md:h-20 fill-accent animate-pulse drop-shadow-2xl transform hover:scale-125 transition-transform duration-500" />
