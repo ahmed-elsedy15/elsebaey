@@ -1,3 +1,46 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero",
+      "description": "Elegant couple in sunset",
+      "imageUrl": "https://picsum.photos/seed/wedding-hero/1920/1080",
+      "imageHint": "wedding couple"
+    },
+    {
+      "id": "gallery-1",
+      "description": "Engagement ring detail",
+      "imageUrl": "https://picsum.photos/seed/ring/800/1000",
+      "imageHint": "engagement ring"
+    },
+    {
+      "id": "gallery-2",
+      "description": "Couple walking in garden",
+      "imageUrl": "https://picsum.photos/seed/garden/800/1000",
+      "imageHint": "couple garden"
+    },
+    {
+      "id": "gallery-3",
+      "description": "Wedding cake and decorations",
+      "imageUrl": "https://picsum.photos/seed/cake/800/1000",
+      "imageHint": "wedding cake"
+    },
+    {
+      "id": "gallery-4",
+      "description": "Heartfelt moment embrace",
+      "imageUrl": "https://picsum.photos/seed/embrace/800/1000",
+      "imageHint": "couple embrace"
+    },
+    {
+      "id": "timeline-1",
+      "description": "First meeting place",
+      "imageUrl": "https://picsum.photos/seed/cafe/400/400",
+      "imageHint": "cozy cafe"
+    },
+    {
+      "id": "timeline-2",
+      "description": "The proposal",
+      "imageUrl": "https://picsum.photos/seed/proposal/400/400",
+      "imageHint": "proposal moment"
+    }
+  ]
 }
