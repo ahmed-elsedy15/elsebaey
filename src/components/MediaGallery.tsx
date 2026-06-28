@@ -1,89 +1,132 @@
 'use client';
 
 import Image from 'next/image';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Play } from 'lucide-react';
-import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { useEffect, useRef } from 'react';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger
+} from '@/components/ui/dialog';
+import { useEffect, useRef, useState } from 'react';
+import './es.css';
+
+const galleryImages = [
+  { id: 'gallery-1', imageUrl: '/g1.jpeg', description: '..' },
+  { id: 'gallery-2', imageUrl: '/e4.jpeg', description: '..' },
+  { id: 'gallery-3', imageUrl: '/e1.jpeg', description: '..' },
+];
 
 export default function MediaGallery() {
-  const images = PlaceHolderImages.filter(img => img.id.startsWith('gallery-'));
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, { threshold: 0.1 });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
     const elements = sectionRef.current?.querySelectorAll('.reveal');
-    elements?.forEach(el => observer.observe(el));
+    elements?.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
   }, []);
 
+  const toggleVideo = () => {
+    if (!videoRef.current) return;
+
+    if (videoRef.current.paused) {
+      videoRef.current.muted = false;
+      videoRef.current.play();
+      setIsPlaying(true);
+    } else {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    }
+  };
+
   return (
-    <section ref={sectionRef} className="py-24 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16 reveal">
-          <h2 className="font-headline text-4xl md:text-5xl mb-4 text-primary">لحظات لا تُنسى</h2>
-          <p className="font-body text-muted-foreground text-lg">لمحات من رحلتنا الجميلة معاً.</p>
+    <section ref={sectionRef} className="media-section">
+      <div className="media-container">
+
+        {/* Header */}
+        <div className="media-header reveal">
+          <h2>لحظات لا تُنسى</h2>
+          <p>لمحات من رحلتنا الجميلة معاً.</p>
         </div>
 
-        <div className="max-w-4xl mx-auto mb-16 reveal">
-          <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl group cursor-pointer">
-            <Image 
-              src="https://picsum.photos/seed/love-video/1200/675" 
-              alt="Love Story Video" 
-              fill 
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
+        {/* Video */}
+        <div className="media-video reveal">
+          <div
+            className={`video-card ${isPlaying ? 'playing' : ''}`}
+            onClick={toggleVideo}
+          >
+            <video
+              ref={videoRef}
+              src="/vv2.mp4"
+              className="video-element"
+              playsInline
+              preload="metadata"
             />
-            <div className="absolute inset-0 bg-black/30 flex items-center justify-center transition-opacity group-hover:bg-black/20">
-              <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center transition-transform group-hover:scale-110">
-                <Play className="text-white fill-current w-8 h-8 ml-1" />
+
+            {!isPlaying && (
+              <div className="video-overlay">
+                <div className="play-btn">
+                  <Play />
+                </div>
               </div>
-            </div>
-            <div className="absolute bottom-8 left-8 text-white">
-              <h3 className="font-headline text-2xl mb-1">قصة حبنا</h3>
-              <p className="font-body opacity-80 uppercase tracking-widest text-sm">فيلم سينمائي</p>
-            </div>
+            )}
+
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {images.map((image, index) => (
-            <Dialog key={index}>
+        {/* Gallery */}
+        <div className="media-grid">
+          {galleryImages.map((image) => (
+            <Dialog key={image.id}>
               <DialogTrigger asChild>
-                <div 
-                  className="group relative aspect-[4/5] rounded-2xl overflow-hidden shadow-lg cursor-pointer reveal"
-                >
-                  <Image 
-                    src={image.imageUrl} 
-                    alt={image.description} 
-                    fill 
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    data-ai-hint={image.imageHint}
+                <div className="media-item reveal">
+                  <Image
+                    src={image.imageUrl}
+                    alt={image.description}
+                    fill
+                    className="media-img"
                   />
-                  <div className="absolute inset-0 bg-primary/20 opacity-0 transition-opacity group-hover:opacity-100 flex items-center justify-center">
-                    <span className="text-white font-body border border-white px-4 py-2 rounded-full text-sm">عرض الصورة</span>
+
+                  <div className="media-hover">
+                    <span>عرض الصورة</span>
                   </div>
                 </div>
               </DialogTrigger>
-              <DialogContent className="max-w-4xl p-6 bg-card border-none">
-                <DialogTitle className="font-headline text-2xl mb-2">{image.description}</DialogTitle>
-                <DialogDescription className="font-body text-muted-foreground mb-4">
+
+              <DialogContent className="media-dialog">
+                <DialogTitle>{image.description}</DialogTitle>
+                <DialogDescription>
                   لحظة من ذكرياتنا الجميلة.
                 </DialogDescription>
-                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl">
-                  <Image src={image.imageUrl} alt={image.description} fill className="object-contain" />
+
+                <div className="dialog-image">
+                  <Image
+                    src={image.imageUrl}
+                    alt={image.description}
+                    fill
+                    className="dialog-img"
+                  />
                 </div>
               </DialogContent>
             </Dialog>
           ))}
         </div>
+
       </div>
     </section>
   );

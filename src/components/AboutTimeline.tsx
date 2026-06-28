@@ -2,39 +2,43 @@
 
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
+import './es.css';
 
 const timelineEvents = [
   {
-    title: "The First Glance",
-    date: "March 2022",
-    description: "In a small, sunlit café, our eyes met for the first time. A simple 'hello' that changed everything.",
-    image: "https://picsum.photos/seed/cafe/400/400"
+    title: "قراءة الفاتحة",
+    date: "February 24, 2025",
+    description: "بسم الله بدأت الحكاية.",
+    image: "/e2.jpeg"
   },
   {
-    title: "Falling in Love",
-    date: "September 2023",
-    description: "Through seasons of laughter and quiet moments, we realized that we were each other's home.",
-    image: "https://picsum.photos/seed/love/400/400"
+    title: "الخطوبة",
+    date: "April 1, 2025",
+    description: "في هذا اليوم بدأ مشوارنا معًا بهدوء ورضا، على أمل أن يكون القادم أجمل وأقرب.",
+    image: "/e3.jpeg"
   },
   {
-    title: "The Question",
-    date: "February 2025",
-    description: "Under the starlit sky, Mohammed asked the question that would bind our lives forever. Dina said 'Yes'.",
-    image: "https://picsum.photos/seed/proposal/400/400"
-  }
+    title: "عقد القِران",
+    date: "April 17, 2026",
+    description: "في هذا اليوم تم عقد القِران، وربط الله بين قلبين على سنة الله ورسوله.",
+    image: "/e6.jpeg"
+  },
 ];
 
 export default function AboutTimeline() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, { threshold: 0.1 });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
     const elements = sectionRef.current?.querySelectorAll('.reveal');
     elements?.forEach(el => observer.observe(el));
@@ -43,42 +47,36 @@ export default function AboutTimeline() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-card overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16 reveal">
-          <h2 className="font-headline text-4xl md:text-5xl mb-4">Our Journey</h2>
-          <div className="w-16 h-1 bg-accent mx-auto" />
+    <section ref={sectionRef} className="timeline-section">
+      <div className="timeline-container">
+        <div className="timeline-header reveal">
+          <h2>حكايتنا </h2>
+          <span className="line" />
         </div>
 
-        <div className="relative max-w-5xl mx-auto">
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-primary/20 hidden md:block" />
+        <div className="timeline-wrapper">
+          <span className="center-line" />
 
           {timelineEvents.map((event, index) => (
-            <div key={index} className={`flex flex-col md:flex-row items-center mb-16 last:mb-0 reveal ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-              <div className="w-full md:w-1/2 px-8 mb-8 md:mb-0">
-                <div className={`text-center ${index % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>
-                  <span className="font-body text-accent font-semibold text-lg">{event.date}</span>
-                  <h3 className="font-headline text-3xl mb-4 text-primary">{event.title}</h3>
-                  <p className="font-body text-muted-foreground text-lg leading-relaxed">
-                    {event.description}
-                  </p>
-                </div>
+            <div
+              key={index}
+              className={`timeline-item reveal ${index % 2 === 0 ? 'reverse' : ''}`}
+            >
+              <div className="timeline-content">
+                <span className="date">{event.date}</span>
+                <h3>{event.title}</h3>
+                <p>{event.description}</p>
               </div>
 
-              <div className="relative z-10 hidden md:block">
-                <div className="w-4 h-4 bg-primary rounded-full border-4 border-background shadow-md" />
-              </div>
+              <div className="timeline-dot" />
 
-              <div className="w-full md:w-1/2 px-8">
-                <div className="relative aspect-square max-w-[300px] mx-auto overflow-hidden rounded-2xl shadow-xl ring-8 ring-background">
-                  <Image 
-                    src={event.image} 
-                    alt={event.title} 
-                    fill 
-                    className="object-cover"
-                    data-ai-hint="romantic photo"
-                  />
-                </div>
+              <div className="timeline-image">
+                <Image
+                  src={event.image}
+                  alt={event.title}
+                  fill
+                  className="img"
+                />
               </div>
             </div>
           ))}

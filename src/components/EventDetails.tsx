@@ -1,9 +1,10 @@
 'use client';
 
-import { MapPin, Clock, Calendar as CalendarIcon, Info } from 'lucide-react';
+import { MapPin, Clock, Calendar as CalendarIcon } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useState, useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
+import './es.css';
 
 export default function EventDetails() {
   const [mapLoaded, setMapLoaded] = useState(false);
@@ -12,13 +13,17 @@ export default function EventDetails() {
 
   useEffect(() => {
     setIsMounted(true);
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, { threshold: 0.1 });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
     const elements = sectionRef.current?.querySelectorAll('.reveal');
     elements?.forEach(el => observer.observe(el));
@@ -27,85 +32,61 @@ export default function EventDetails() {
   }, []);
 
   return (
-    <section id="event-details" ref={sectionRef} className="py-24 bg-secondary/30 relative overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16 reveal">
-          <h2 className="font-headline text-4xl md:text-5xl mb-4 text-primary">تفاصيل الحفل | Join Us</h2>
-          <p className="font-body text-muted-foreground text-lg">كل تفصيلة في هذا اليوم صُنعت بالحب.</p>
+    <section id="event-details" ref={sectionRef} className="event-section">
+      <div className="event-container">
+        <div className="event-header reveal">
+          <h2>تفاصيل الحفل</h2>
+          <p>كل تفصيلة في هذا اليوم صُنعت بالحب.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <Card className="border-none shadow-xl bg-card/80 backdrop-blur transition-all hover:-translate-y-2 reveal">
-            <CardContent className="p-8 text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <MapPin className="text-primary w-8 h-8" />
+        <div className="event-grid">
+          {/* Location Card */}
+          <Card className="event-card reveal">
+            <CardContent className="event-card-content center">
+              <div className="icon-circle">
+                <CalendarIcon />
               </div>
-              <h3 className="font-headline text-2xl mb-4">The Ceremony</h3>
-              <p className="font-body text-muted-foreground mb-2">قاعة لوريف - Lorev Hall</p>
-              <p className="font-body text-muted-foreground mb-6">جمصة، محافظة الدقهلية</p>
-              <div className="h-px bg-border w-12 mx-auto mb-6" />
-              <div className="flex items-center justify-center text-primary font-semibold">
-                <Clock className="text-primary w-4 h-4 mr-2" />
-                <span>6:00 PM Sharp</span>
-              </div>
+              <h3>الحنة</h3>
+              <div className="day">23</div>
+              <div className="date-text">July 2026</div>
+              <p>أمام المنزل - بمنشأة النصر</p>
             </CardContent>
           </Card>
 
-          <Card className="border-none shadow-2xl bg-primary text-primary-foreground transition-all hover:-translate-y-2 scale-105 z-20 reveal">
-            <CardContent className="p-8 text-center flex flex-col justify-center h-full">
-              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <CalendarIcon className="text-white w-8 h-8" />
+          {/* Date Card */}
+          <Card className="event-card featured reveal">
+            <CardContent className="event-card-content center">
+              <div className="icon-circle light">
+                <CalendarIcon />
               </div>
-              <h3 className="font-headline text-3xl mb-4">Thursday</h3>
-              <p className="font-headline text-6xl mb-4">23</p>
-              <p className="font-body uppercase tracking-[0.3em] text-sm mb-6">July 2026</p>
-              <div className="bg-white/10 py-3 px-6 rounded-full inline-block mx-auto">
-                <span className="font-body">رسمي | Formal Attire</span>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="border-none shadow-xl bg-card/80 backdrop-blur transition-all hover:-translate-y-2 reveal">
-            <CardContent className="p-8 text-center">
-              <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Info className="text-accent w-8 h-8" />
-              </div>
-              <h3 className="font-headline text-2xl mb-4">The Celebration</h3>
-              <p className="font-body text-muted-foreground mb-2">Lorev Pavilion</p>
-              <p className="font-body text-muted-foreground mb-6">عشاء واحتفال | Dinner & Dancing</p>
-              <div className="h-px bg-border w-12 mx-auto mb-6" />
-              <div className="flex items-center justify-center text-accent font-semibold">
-                <Clock className="w-4 h-4 mr-2" />
-                <span>8:00 PM Until Late</span>
-              </div>
+              <h3>الفرح</h3>
+              <div className="day">24</div>
+              <div className="date-text">July 2026</div>
+              <p>قاعة لوريف - Lorev Hall</p>
+              <p>بمدينة جمصة  </p>
             </CardContent>
           </Card>
         </div>
 
-        <div className="mt-16 max-w-6xl mx-auto overflow-hidden rounded-3xl shadow-xl h-96 relative reveal">
+        {/* Map */}
+        <div className="map-wrapper reveal">
           {!mapLoaded && (
-            <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center z-10">
-              <div className="text-center">
-                <MapPin className="w-12 h-12 text-primary/30 mx-auto mb-2" />
-                <p className="font-body text-muted-foreground italic">جاري تحميل الخريطة...</p>
-              </div>
+            <div className="map-loader">
+              <MapPin />
+              <p>جاري تحميل الخريطة...</p>
             </div>
           )}
+
           {isMounted && (
-            <iframe 
+            <iframe
               onLoad={() => setMapLoaded(true)}
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3408.847589578278!2d31.54522222442461!3d31.443234174360693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f759003d7387fb%3A0x8a862886e0035c4c!2zTG9yZXYgSGFsbCAtINmC2KfYudipINmE2YjYsdmK2YE!5e0!3m2!1sen!2seg!4v1717250000000!5m2!1sen!2seg" 
-              width="100%" 
-              height="100%" 
-              style={{ border: 0 }} 
-              allowFullScreen 
-              loading="lazy" 
-              referrerPolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3408.847589578278!2d31.54522222442461!3d31.443234174360693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f759003d7387fb%3A0x8a862886e0035c4c!2zTG9yZXYgSGFsbCAtINmC2KfYudipINmE2YjYsdmK2YE!5e0!3m2!1sen!2seg!4v1717250000000!5m2!1sen!2seg"
               className={cn(
-                "transition-opacity duration-1000",
-                mapLoaded ? "opacity-100" : "opacity-0"
+                'map-frame',
+                mapLoaded ? 'show' : ''
               )}
-            ></iframe>
+              loading="lazy"
+            />
           )}
         </div>
       </div>
