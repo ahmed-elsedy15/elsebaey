@@ -2,8 +2,13 @@ import type {Metadata} from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Lumina Vows | Mohammed & Dina',
+  title: ' Mohammed & Dina',
   description: 'Join us in celebrating the union of Mohammed and Dina on July 23, 2026.',
+  icons: {
+    icon: '/e1.jpeg',
+    shortcut: '/your-image.png',
+    apple: '/your-image.png',
+  },
 };
 
 export default function RootLayout({
